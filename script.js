@@ -1,21 +1,4 @@
-/**
- * 3D Book Reader Application
- * 
- * This application creates a realistic 3D book reading experience using CSS 3D transforms
- * and JavaScript animations. The page-turn effect is achieved through:
- * 
- * 1. CSS 3D Transforms: Using rotateY() to simulate page flipping
- * 2. Animation Timing: Coordinated animations for smooth transitions
- * 3. Perspective: Creating depth perception with CSS perspective property
- * 4. Backface Visibility: Managing which side of the page is visible during turns
- * 
- * The 3D approach was chosen over canvas/WebGL for:
- * - Better performance on low-end devices
- * - Native browser support without external libraries
- * - Easier text rendering and interaction
- * - Automatic responsive behavior
- * - Better accessibility support
- */
+
 
 class BookReader {
     constructor() {
@@ -540,4 +523,5 @@ document.addEventListener('visibilitychange', () => {
  * 1. Replace './public/assets/book-cover-leather.jpg' with your image
  * 2. Update the src attribute in the HTML if using a different filename
  * 3. Ensure the image has appropriate dimensions (recommended: 300x400px)
+
  */
