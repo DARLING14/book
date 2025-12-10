@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="image.jpg" type="image/png">
+    <title>Book Review:11:11</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-spinner"></div>
+        <p>Loading Book...</p>
+    </div>
+
+    <!-- Main Container -->
+    <div id="app" class="app-container">
+        <!-- Header Controls -->
+        <header class="header">
+            <div class="header-left">
+                <button id="edit-mode-btn" class="control-btn" aria-label="Toggle Edit Mode">
+                    <span>✏️</span> Edit Mode
+                </button>
+                <button id="organize-mode-btn" class="control-btn" aria-label="Organize Pages">
+                    <span>📑</span> Organize
+                </button>
+            </div>
+            <div class="header-center">
+                <h1>Book Review:11:11</h1>
+            </div>
+            <div class="header-right">
+                <button id="import-btn" class="control-btn" aria-label="Import Book">
+                    <span>📁</span> Import
+                </button>
+                <button id="export-btn" class="control-btn" aria-label="Export Book">
+                    <span>💾</span> Export
+                </button>
+                <button id="settings-btn" class="control-btn" aria-label="Settings">
+                    <span>⚙️</span> Settings
+                </button>
+            </div>
+        </header>
+
+        <!-- Book Container -->
+        <main class="book-container" id="book-container">
+            <!-- Closed Book (Homepage) -->
+            <div id="closed-book" class="closed-book">
+                <div class="book-spine"></div>
+                <div class="book-cover">
+                    <img src="617PWJvhSKL._SL1500_.jpg" alt="Book Cover" class="cover-image">
+                    <div class="cover-overlay">
+                        <h2 class="book-title">My Digital Book</h2>
+                        <p class="book-subtitle">Click to Open</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Open Book (Reader) -->
+            <div id="open-book" class="open-book hidden">
+                <div class="book-shadow"></div>
+                <div class="book-spine-open"></div>
+                
+                <!-- Left Page -->
+                <div class="page left-page" id="left-page">
+                    <div class="page-content">
+                        <div class="page-number left-page-num" id="left-page-num"></div>
+                        <div class="page-text" id="left-page-text"></div>
+                    </div>
+                </div>
+
+                <!-- Right Page -->
+                <div class="page right-page" id="right-page">
+                    <div class="page-content">
+                        <div class="page-number right-page-num" id="right-page-num"></div>
+                        <div class="page-text" id="right-page-text"></div>
+                    </div>
+                </div>
+
+                <!-- Page Turn Animation Layer -->
+                <div class="page-turn-layer" id="page-turn-layer">
+                    <div class="turning-page" id="turning-page">
+                        <div class="page-front">
+                            <div class="page-content">
+                                <div class="page-text" id="turning-page-front-text"></div>
+                            </div>
+                        </div>
+                        <div class="page-back">
+                            <div class="page-content">
+                                <div class="page-text" id="turning-page-back-text"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Reader Controls -->
+        <div id="reader-controls" class="reader-controls hidden">
+            <div class="controls-row">
+                <button id="prev-btn" class="nav-btn" aria-label="Previous Page">
+                    <span>←</span> Previous
+                </button>
+                
+                <div class="progress-container">
+                    <div class="page-info">
+                        <span id="current-page">1</span> / <span id="total-pages"></span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress-fill"></div>
+                    </div>
+                </div>
+                
+                <button id="next-btn" class="nav-btn" aria-label="Next Page">
+                    Next <span>→</span>
+                </button>
+            </div>
+            
+            <div class="controls-row">
+                <button id="close-book-btn" class="control-btn" aria-label="Close Book">
+                    <span>📖</span> Close Book
+                </button>
+                <button id="fullscreen-btn" class="control-btn" aria-label="Toggle Fullscreen">
+                    <span>⛶</span> Fullscreen
+                </button>
+            </div>
+        </div>
+
+        <!-- Edit Mode Panel -->
+        <div id="edit-panel" class="edit-panel hidden">
+            <div class="edit-header">
+                <h3>Edit Page Content</h3>
+                <button id="save-edit-btn" class="save-btn">Save Changes</button>
+            </div>
+            <textarea id="edit-textarea" class="edit-textarea" placeholder="Enter page content here..."></textarea>
+        </div>
+
+        <!-- Settings Panel -->
+        <div id="settings-panel" class="settings-panel hidden">
+            <div class="settings-header">
+                <h3>Reader Settings</h3>
+                <button id="close-settings-btn" class="close-btn">×</button>
+            </div>
+            <div class="settings-content">
+                <div class="setting-group">
+                    <label for="font-size-slider">Font Size:</label>
+                    <input type="range" id="font-size-slider" min="12" max="24" value="16">
+                    <span id="font-size-value">16px</span>
+                </div>
+                <div class="setting-group">
+                    <label for="theme-select">Theme:</label>
+                    <select id="theme-select">
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                        <option value="sepia">Sepia</option>
+                    </select>
+                </div>
+                <div class="setting-group">
+                    <label for="animation-speed">Animation Speed:</label>
+                    <input type="range" id="animation-speed" min="0.5" max="2" step="0.1" value="1">
+                    <span id="animation-speed-value">1x</span>
+                </div>
+                <div class="setting-group">
+                    <label>
+                        <input type="checkbox" id="enable-3d" checked> Enable 3D Effects
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <!-- File Input (Hidden) -->
+        <input type="file" id="file-input" accept=".json" style="display: none;">
+    </div>
+
+    <!-- Touch/Gesture Detection Areas -->
+    <div id="touch-left" class="touch-area touch-left hidden"></div>
+    <div id="touch-right" class="touch-area touch-right hidden"></div>
+
+    <script src="./script.js"></script>
+</body>
+</html>
